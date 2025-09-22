@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from '@inertiajs/react';
 
 export default function AddTaskForm() {
@@ -14,24 +14,35 @@ export default function AddTaskForm() {
     }
 
     return (
-        <form onSubmit={submit} className="mb-4">
+        <form onSubmit={submit} className="mb-6">
             <div className="flex">
                 <input
                     type="text"
                     value={data.title}
                     onChange={(e) => setData('title', e.target.value)}
-                    className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm flex-grow"
-                    placeholder="Add a new task"
+                    className="flex-grow rounded-md shadow-sm 
+                               border border-gray-300 
+                               bg-white text-gray-900
+                               placeholder-gray-400
+                               focus:border-indigo-500 focus:ring-indigo-500"
+                    placeholder="Add a new task..."
                 />
                 <button
                     type="submit"
-                    className="ml-2 px-4 py-2 bg-indigo-600 text-white rounded-md"
                     disabled={processing}
+                    className="ml-2 px-4 py-2 rounded-md 
+                               bg-indigo-600 hover:bg-indigo-700 
+                               text-white font-medium
+                               disabled:opacity-50"
                 >
                     Add Task
                 </button>
             </div>
-            {errors.title && <div className="text-red-500 mt-1">{errors.title}</div>}
+            {errors.title && (
+                <div className="text-red-500 mt-2 text-sm">
+                    {errors.title}
+                </div>
+            )}
         </form>
     );
 }

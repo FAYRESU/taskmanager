@@ -9,15 +9,15 @@ export default function TaskFilter({ filter }) {
     ];
 
     return (
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 mb-4">
             {filters.map(f => (
                 <Link
                     key={f.value}
                     href={`/tasks?filter=${f.value}`}
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                         filter === f.value
-                            ? 'bg-indigo-600 text-white'
-                            : 'bg-gray-200 text-gray-700'
+                            ? 'bg-indigo-600 text-white shadow'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                 >
                     {f.label}
