@@ -33,7 +33,7 @@
     ```bash
     git clone https://github.com/FAYRESU/taskmanager.git
     cd taskmanager
-    git branch feature/task-crud
+    git checkout feature/task-crud
     ```
 
 2.  **ติดตั้ง Backend Dependencies:**
