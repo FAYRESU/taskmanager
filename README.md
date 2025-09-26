@@ -1,61 +1,173 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+แน่นอนครับ! ด้านล่างนี้คือเอกสาร **ฉบับปรับปรุง** พร้อมหัวข้อ **Authentication (Laravel)** ที่คุณต้องการเพิ่ม:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+# Task Manager
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+โปรเจกต์ Task Manager เป็นแอปพลิเคชันสำหรับจัดการงาน (Task) ที่สร้างขึ้นด้วยเทคโนโลยีสมัยใหม่ เพื่อเป็นตัวอย่างการสร้าง Full-stack Application ที่มีประสิทธิภาพ
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ คุณสมบัติเด่น
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Backend:** Laravel 12 (PHP 8.2)
+* **Frontend:** React (Vite)
+* **Styling:** Tailwind CSS
+* **Communication:** Inertia.js (ทำหน้าที่เป็นตัวกลางเชื่อม Laravel กับ React)
+* **CRUD Operations:** สร้าง, อ่าน, อัปเดต, และลบ Task ได้อย่างสมบูรณ์
+* **Filtering:** กรองรายการ Task ตามสถานะ (All, To Do, In Progress, Done) และประเภท (Task, Bug, Story)
+* **Authentication:** ระบบลงทะเบียน, เข้าสู่ระบบ, รีเซ็ตรหัสผ่าน พร้อม middleware ป้องกันหน้า Dashboard และ Tasks
+* **Real-time Feedback:** มีการแจ้งเตือน (Toast notifications) เมื่อมีการกระทำต่างๆ
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 การติดตั้งและใช้งาน (Getting Started)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ✅ สิ่งที่ต้องมี (Prerequisites)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* PHP >= 8.2
+* Composer
+* Node.js & npm
+* Git
+* ฐานข้อมูล (MySQL, PostgreSQL เป็นต้น)
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### ⚙️ ขั้นตอนการติดตั้ง
 
-### Premium Partners
+1. **Clone repository:**
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+   ```bash
+   git clone https://github.com/FAYRESU/taskmanager.git
+   cd taskmanager
+   git checkout feature/task-crud-auth
+   ```
 
-## Contributing
+2. **ติดตั้ง Backend Dependencies:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   ```bash
+   composer install
+   ```
 
-## Code of Conduct
+3. **ติดตั้ง Frontend Dependencies:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   npm install
+   ```
 
-## Security Vulnerabilities
+4. **ตั้งค่า Environment:**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   cp .env.example .env
+   ```
 
-## License
+5. **สร้าง Application Key:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   php artisan key:generate
+   ```
+
+6. **ตั้งค่าฐานข้อมูลใน `.env`:**
+
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=taskmanager
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+7. **Run Database Migrations:**
+
+   ```bash
+   php artisan migrate
+   ```
+
+---
+
+### 🧪 รันโปรเจกต์
+
+1. **รัน Vite (Frontend):**
+
+   ```bash
+   npm run dev
+   ```
+
+2. **รัน Laravel (Backend):**
+
+   ```bash
+   php artisan serve
+   ```
+
+3. เข้าสู่ระบบที่ `http://localhost:8000`
+
+---
+
+## 🔐 Authentication (Laravel)
+
+ระบบนี้ใช้ความสามารถ Authentication ของ Laravel ร่วมกับ Laravel Breeze + Inertia.js สำหรับ React
+
+### ✅ ความสามารถ
+
+* ลงทะเบียน (Register)
+* เข้าสู่ระบบ (Login)
+* รีเซ็ตรหัสผ่านผ่านอีเมล (Forgot / Reset Password)
+* การป้องกันหน้าที่ต้องเข้าสู่ระบบ เช่น `/dashboard`, `/tasks`
+* รองรับการเรียกใช้งาน API Authentication ผ่าน **Laravel Sanctum** *(optional)*
+
+### 🔧 การติดตั้ง Authentication
+
+1. ติดตั้ง Breeze:
+
+   ```bash
+   composer require laravel/breeze --dev
+   php artisan breeze:install react
+   ```
+
+2. ติดตั้ง dependencies:
+
+   ```bash
+   npm install && npm run dev
+   ```
+
+3. รัน migration:
+
+   ```bash
+   php artisan migrate
+   ```
+
+4. เสร็จแล้วจะมี route ที่เกี่ยวข้องกับ Auth ดังนี้:
+
+   * `/login`
+   * `/register`
+   * `/forgot-password`
+   * `/reset-password`
+   * `/dashboard`
+
+5. ตรวจสอบ middleware:
+
+   ```php
+   // web.php
+   Route::middleware(['auth'])->group(function () {
+       Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+       Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+   });
+   ```
+
+---
+
+## 🏛️ สถาปัตยกรรมและ Design Patterns
+
+### 1. **Model-View-Controller (MVC)**
+
+* **Model:** `app/Models/Task.php` (ใช้ Eloquent ORM)
+* **View:** React Pages + Components
+* **Controller:** `TaskController` จัดการ logic และประสานงานกับ Model และ View
+
+### 2. **Active Record Pattern**
+
+* `Task::create()`, `Task::where()` คือการประยุกต์ใช้ Active Record Pattern
+
+### 3. **Component-Based Architecture (CBA)**
+
+* UI React ถูกจัดเป็น Component ย่อย เช่น `AddTaskForm`, `TaskItem`
+
