@@ -8,6 +8,8 @@ use Inertia\Inertia;
 
 class TaskController extends Controller
 {
+
+
     public function index(Request $request)
     {
         $tasks = Task::query()
