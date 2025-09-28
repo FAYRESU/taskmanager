@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react';
 import React, { useState, useEffect } from 'react';
 import { router, usePage } from '@inertiajs/react';
 import { toast } from 'react-toastify';
+import { Trash2 } from "lucide-react";
 
 export default function Index({ auth }) {
   const { tasks, statusFilter, typeFilter, flash } = usePage().props;
@@ -93,7 +94,10 @@ export default function Index({ auth }) {
                 </div>
 
                 {/* Create Task */}
-                <form onSubmit={createTask} className="flex flex-col sm:flex-row gap-3 mb-8 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 relative">
+                <form
+                  onSubmit={createTask}
+                  className="flex flex-col sm:flex-row gap-4 mb-8 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 relative"
+                >
                   <input
                     type="text"
                     value={newTask}
@@ -164,12 +168,14 @@ export default function Index({ auth }) {
                       ${statusKey==='todo'?'bg-red-50 border-red-300':''}
                       ${statusKey==='in_progress'?'bg-yellow-50 border-yellow-300':''}
                       ${statusKey==='done'?'bg-green-50 border-green-300':''}`}>
+
                       <h2 className={`text-2xl font-bold mb-4 capitalize border-b pb-2
                         ${statusKey==='todo'?'text-red-700 border-red-300':''}
                         ${statusKey==='in_progress'?'text-yellow-700 border-yellow-300':''}
                         ${statusKey==='done'?'text-green-700 border-green-300':''}`}>
                         {statusKey.replace('_',' ')}
                       </h2>
+
                       <div className="space-y-4">
                         {tasks.filter(task => task.status===statusKey && (typeFilter==='all' || task.type===typeFilter))
                           .map(task => (
@@ -177,44 +183,50 @@ export default function Index({ auth }) {
                               ${task.type==='task'?'bg-white border-blue-300':''}
                               ${task.type==='bug'?'bg-red-50 border-red-400':''}
                               ${task.type==='story'?'bg-purple-50 border-purple-400':''}`}>
-                              
-                              <div className="flex justify-between items-start mb-2">
+
+                              <div className="flex justify-between items-center mb-2">
                                 <span className={`text-lg font-semibold ${task.status==='done'?'line-through text-gray-500':'text-gray-800'}`}>
                                   {task.title}
                                 </span>
+
                                 <button
-                                  onClick={()=>deleteTask(task)}
-                                  className="px-2 py-1 bg-red-500 text-white font-semibold rounded-lg shadow hover:bg-red-600 hover:shadow-lg transition"
-                                >Delete</button>
+                                  onClick={() => deleteTask(task)}
+                                  className="p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 shadow-sm transition"
+                                  title="Delete Task"
+                                >
+                                  <Trash2 size={18} />
+                                </button>
                               </div>
 
-                              <div className="text-sm text-gray-600 mb-2">
+                              <div className="text-sm mb-2">
                                 Type:{' '}
-                                <select value={task.type} onChange={(e)=>updateType(task,e.target.value)} 
-                                  className="select select-bordered select-sm inline-block rounded-md border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400">
+                                <select value={task.type} onChange={(e)=>updateType(task,e.target.value)}
+                                  className="ml-2 px-2 py-1 text-sm rounded-md border focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400"
+                                >
                                   <option value="task">📝 Task</option>
                                   <option value="bug">🐞 Bug</option>
                                   <option value="story">📖 Story</option>
                                 </select>
                               </div>
 
-                              <div className="flex items-center justify-between">
+                              <div className="flex items-center justify-between gap-2">
                                 <select value={task.status} onChange={(e)=>updateStatus(task,e.target.value)}
-                                  className="select select-bordered select-sm rounded-md border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400">
+                                  className="px-2 py-1 text-sm rounded-md border focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400"
+                                >
                                   <option value="todo">🛑 To Do</option>
                                   <option value="in_progress">⚡ In Progress</option>
                                   <option value="done">✅ Done</option>
                                 </select>
 
-                                <input type="date"
+                                <input
+                                  type="date"
                                   value={task.due_date ? new Date(task.due_date).toISOString().split('T')[0] : ''}
                                   onChange={(e)=>updateDueDate(task,e.target.value)}
-                                  className={`input input-bordered input-sm rounded-md focus:ring-2 focus:border-indigo-400 
+                                  className={`px-2 py-1 text-sm rounded-md border focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400
                                     ${task.type==='task'?'bg-blue-50 border-blue-300':''}
                                     ${task.type==='bug'?'bg-red-50 border-red-400':''}
                                     ${task.type==='story'?'bg-purple-50 border-purple-400':''}
-                                    ${task.status==='done'?'line-through text-gray-500':''}
-                                    hover:bg-indigo-50 transition`}
+                                    w-full`}
                                 />
                               </div>
                             </div>
@@ -234,6 +246,7 @@ export default function Index({ auth }) {
                     animation: bounce-slow 6s infinite ease-in-out;
                   }
                 `}</style>
+
               </div>
             </div>
           </div>
