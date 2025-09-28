@@ -38,6 +38,7 @@
    ```bash
    git clone https://github.com/FAYRESU/taskmanager.git
    cd taskmanager
+   git checkout feature/task-crud-auth
    ```
 
 2. **ติดตั้ง Backend Dependencies:**
