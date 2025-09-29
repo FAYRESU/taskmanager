@@ -8,8 +8,6 @@ use Inertia\Inertia;
 
 class TaskController extends Controller
 {
-
-
     public function index(Request $request)
     {
         $tasks = Task::query()
@@ -27,18 +25,18 @@ class TaskController extends Controller
             ->get();
 
         return Inertia::render('Tasks/Index', [
-            'tasks' => $tasks,
+            'tasks'        => $tasks,
             'statusFilter' => $request->input('statusFilter', 'all'),
-            'typeFilter' => $request->input('typeFilter', 'all'),
+            'typeFilter'   => $request->input('typeFilter', 'all'),
         ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'    => 'required|string|max:255',
             'due_date' => 'nullable|date',
-            'type' => 'sometimes|string|in:task,bug,story',
+            'type'     => 'sometimes|string|in:task,bug,story',
         ]);
 
         Task::create($request->only('title', 'due_date', 'type'));
@@ -49,10 +47,10 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $request->validate([
-            'title' => 'sometimes|string|max:255',
-            'status' => 'sometimes|string|in:todo,in_progress,done',
+            'title'    => 'sometimes|string|max:255',
+            'status'   => 'sometimes|string|in:todo,in_progress,done',
             'due_date' => 'nullable|date',
-            'type' => 'sometimes|string|in:task,bug,story',
+            'type'     => 'sometimes|string|in:task,bug,story',
         ]);
 
         $task->update($request->only('title', 'status', 'due_date', 'type'));
