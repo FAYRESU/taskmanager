@@ -65,12 +65,19 @@
     เปิดไฟล์ `.env` และแก้ไขค่า `DB_*` ให้ตรงกับการตั้งค่าฐานข้อมูลของคุณ
 
     ```
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=taskmanager
-    DB_USERNAME=root
-    DB_PASSWORD=
+    DB_CONNECTION=sqlite
+    ```
+
+# DB_HOST=127.0.0.1
+
+# DB_PORT=3306
+
+# DB_DATABASE=laravel
+
+# DB_USERNAME=root
+
+# DB_PASSWORD=
+
     ```
 
 7.  **Run Database Migrations:**
