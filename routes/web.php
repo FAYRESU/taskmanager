@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -37,4 +40,19 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->get('/api/user', function (Request $request) {
     return $request->user();
+});
+
+// หน้า Admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index']);
+});
+
+// หน้า Manager
+Route::middleware(['auth', 'role:manager'])->group(function () {
+    Route::get('/manager/dashboard', [ManagerController::class, 'index']);
+});
+
+// หน้า Member
+Route::middleware(['auth', 'role:member'])->group(function () {
+    Route::get('/member/tasks', [MemberController::class, 'index']);
 });

@@ -13,11 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // เรียก Seeder อื่น ๆ ที่ต้องการให้รัน
+        $this->call([
+            RoleUserSeeder::class, // ✅ เพิ่มบรรทัดนี้
         ]);
     }
 }

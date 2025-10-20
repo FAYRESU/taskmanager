@@ -1,136 +1,315 @@
-# Task Manager
+ได้เลยครับ 😄
+ผมจะช่วยคุณปรับ **README.md** ให้เหมาะกับ **Personal Task Manager** (ระบบจัดการงานของตัวเอง) พร้อมภาษาไทย, Diagram Workflow, และตัวอย่าง UI placeholder แบบครบถ้วน
 
-โปรเจกต์ Task Manager เป็นแอปพลิเคชันสำหรับจัดการงาน (Task) ที่สร้างขึ้นด้วยเทคโนโลยีสมัยใหม่ เพื่อเป็นตัวอย่างการสร้าง Full-stack Application ที่มีประสิทธิภาพ
+นี่คือเวอร์ชันใหม่:
 
-## ✨ คุณสมบัติเด่น
+```markdown
+# ✅ ระบบจัดการงานส่วนตัว (Personal Task Manager - TMS)
 
--   **Backend:** Laravel 12 (PHP 8.2)
--   **Frontend:** React (Vite)
--   **Styling:** Tailwind CSS
--   **Communication:** Inertia.js (ทำหน้าที่เป็นตัวกลางเชื่อม Laravel กับ React)
--   **CRUD Operations:** สร้าง, อ่าน, อัปเดต, และลบ Task ได้อย่างสมบูรณ์
--   **Filtering:** สามารถกรองรายการ Task ตามสถานะ (All, To Do, In Progress, Done) และประเภท (Task, Bug, Story)
--   **Real-time Feedback:** มีการแจ้งเตือน (Toast notifications) เมื่อมีการกระทำต่างๆ
+ระบบจัดการงานส่วนตัวแบบเว็บ — ให้ผู้ใช้สร้าง จัดการ ติดตาม และทำงานให้เสร็จได้อย่างมีประสิทธิภาพ  
+สร้างด้วย **Laravel 12** และ **React (Vite)** สำหรับประสบการณ์ที่ราบรื่นและตอบสนองสูง
 
 ---
 
-## 🚀 การติดตั้งและใช้งาน (Getting Started)
+## 🧱 สแต็กเทคโนโลยี
 
-ทำตามขั้นตอนต่อไปนี้เพื่อติดตั้งและรันโปรเจกต์บนเครื่องของคุณ
-
-### สิ่งที่ต้องมี (Prerequisites)
-
--   PHP >= 8.2
--   Composer
--   Node.js & npm
--   Git
--   ฐานข้อมูล (เช่น MySQL, PostgreSQL)
-
-### ขั้นตอนการติดตั้ง
-
-1.  **Clone a repository:**
-
-    ```bash
-    git clone https://github.com/FAYRESU/taskmanager.git
-    cd taskmanager
-    git checkout feature/task-crud-auth
-    ```
-
-2.  **ติดตั้ง Backend Dependencies:**
-
-    ```bash
-    composer install
-    ```
-
-3.  **ติดตั้ง Frontend Dependencies:**
-
-    ```bash
-    npm install
-    ```
-
-4.  **ตั้งค่า Environment:**
-    คัดลอกไฟล์ `.env.example` ไปเป็น `.env`
-
-    ```bash
-    cp .env.example .env
-    ```
-
-5.  **สร้าง Application Key:**
-
-    ```bash
-    php artisan key:generate
-    ```
-
-6.  **ตั้งค่าฐานข้อมูล:**
-    เปิดไฟล์ `.env` และแก้ไขค่า `DB_*` ให้ตรงกับการตั้งค่าฐานข้อมูลของคุณ
-
-    ```
-    DB_CONNECTION=sqlite
-    ```
-
-# DB_HOST=127.0.0.1
-
-# DB_PORT=3306
-
-# DB_DATABASE=laravel
-
-# DB_USERNAME=root
-
-# DB_PASSWORD=
-
-    ```
-
-7.  **Run Database Migrations:**
-    เพื่อสร้างตารางในฐานข้อมูล
-    ```bash
-    php artisan migrate
-    ```
-
-### การรันโปรเจกต์
-
-1.  **รัน Vite Development Server (สำหรับ Frontend):**
-
-    ```bash
-    npm run dev
-    ```
-
-2.  **รัน Laravel Development Server (สำหรับ Backend):**
-    เปิด Terminal ใหม่ขึ้นมา แล้วรันคำสั่ง
-
-    ```bash
-    php artisan serve
-    ```
-
-3.  เปิดเบราว์เซอร์แล้วเข้าไปที่ `http://localhost:8000`
+**Laravel** • **React.js** • **TailwindCSS** • **MySQL/SQLite** • **RESTful API**
 
 ---
 
-## 🏛️ สถาปัตยกรรมและ Design Patterns
+## 🌟 ฟีเจอร์หลัก
 
-โปรเจกต์นี้ถูกออกแบบโดยใช้ Design Pattern และหลักการที่เป็นที่ยอมรับในวงการ เพื่อให้โค้ดมีความเป็นระเบียบ, ง่ายต่อการบำรุงรักษา, และขยายความสามารถในอนาคต
+-   สร้างและจัดการงานส่วนตัว
+-   กำหนดวันครบกำหนดและลำดับความสำคัญ
+-   ติดตามความคืบหน้าของงานด้วย Progress Bar
+-   จัดการงานในรูปแบบ Kanban Board (To-Do → In Progress → Review → Done)
+-   แนบไฟล์กับงานแต่ละงาน
+-   แสดงความคิดเห็นสำหรับงานแต่ละงาน
+-   ดูสรุปงานทั้งหมดและสถานะรวม
 
-### 1. Model-View-Controller (MVC)
+---
 
-เป็น Pattern หลักที่ Laravel ใช้ในการแบ่งแยกส่วนต่างๆ ของแอปพลิเคชัน
+## 🔄 Workflow งาน (ASCII Diagram)
+```
 
--   **Model:** (`app/Models/Task.php`)
+┌──────────┐
+│ To-Do │ ← งานที่สร้างขึ้น
+└────┬─────┘
+▼
+┌────────────┐
+│ In Progress│ ← กำลังทำ
+└────┬───────┘
+▼
+┌───────────┐
+│ Review │ ← ตรวจสอบก่อนเสร็จ
+└────┬──────┘
+▼
+┌────────┐
+│ Done │ ← งานเสร็จสมบูรณ์
+└────────┘
 
-    -   ทำหน้าที่จัดการข้อมูลและ Business Logic
-    -   ในโปรเจกต์นี้ Model จะใช้ Eloquent ORM ซึ่งเป็น Implementation ของ **Active Record Pattern** ทำให้สามารถติดต่อกับฐานข้อมูลได้อย่างสะดวก (เช่น `Task::create()`, `Task::all()`)
+```
 
--   **View:** (`resources/js/Pages/Tasks/Index.jsx` และ Components อื่นๆ)
+---
 
-    -   ทำหน้าที่แสดงผลข้อมูลให้ผู้ใช้เห็น (User Interface)
-    -   โปรเจกต์นี้ใช้ React Components เป็น View ซึ่งช่วยให้สามารถสร้าง UI ที่ซับซ้อนและโต้ตอบกับผู้ใช้ได้ดี ผ่าน **Component-Based Architecture**
+## 🎨 ตัวอย่าง UI Components (React + Tailwind)
 
--   **Controller:** (`app/Http/Controllers/TaskController.php`)
-    -   ทำหน้าที่เป็นตัวกลางรับ Request จากผู้ใช้, สั่งให้ Model จัดการข้อมูล, และส่งผลลัพธ์ที่ได้ไปให้ View แสดงผล
-    -   จัดการ HTTP requests ทั้งหมดที่เกี่ยวกับ Task เช่น การแสดงผล, การสร้าง, การอัปเดต, และการลบ
+### 1️⃣ Task Board (Kanban Style)
 
-### 2. Active Record Pattern
+```
 
-Eloquent ORM ของ Laravel เป็นการประยุกต์ใช้ Active Record Pattern โดยแต่ละ Model จะ map ตรงไปยังตารางในฐานข้อมูล ทำให้ Object หนึ่งตัวแทนแถวข้อมูลหนึ่งแถว ซึ่งช่วยให้การเขียนโค้ดจัดการข้อมูลง่ายและสั้นลง
+┌───────────────┐ ┌───────────────┐ ┌───────────────┐ ┌───────────────┐
+│ To-Do │ │ In Progress │ │ Review │ │ Done │
+├───────────────┤ ├───────────────┤ ├───────────────┤ ├───────────────┤
+│ Task A │ │ Task B │ │ Task C │ │ Task D │
+│ Task E │ │ Task F │ │ Task G │ │ Task H │
+└───────────────┘ └───────────────┘ └───────────────┘ └───────────────┘
 
-### 3. Component-Based Architecture (CBA)
+```
 
-ในฝั่ง Frontend (React) เราใช้หลักการนี้ในการสร้าง UI โดยการแบ่งหน้าเว็บออกเป็นส่วนประกอบย่อยๆ (Components) ที่สามารถนำกลับมาใช้ใหม่ได้ เช่น `AddTaskForm.jsx`, `TaskItem.jsx` ทำให้โค้ดฝั่ง Frontend มีความเป็นระเบียบและจัดการได้ง่าย
+### 2️⃣ Progress Bar (% งานเสร็จ)
+
+```
+
+Project Alpha
+[██████████░░░░░░░░░░] 40%
+
+```
+
+- ✅ สีเขียว: งานเสร็จแล้ว
+- ⬜ สีเทา: งานยังไม่เสร็จ
+
+### 3️⃣ Task Modal (Quick Edit)
+
+```
+
++-----------------------------+
+| ชื่องาน: อัปเดตเว็บไซต์ |
+| ความสำคัญ: สูง |
+| วันครบกำหนด: 2025-11-01 |
+| สถานะ: In Progress |
+| หมายเหตุ: "ทำ frontend ก่อน"|
+| ไฟล์แนบ: logo.png |
++-----------------------------+
+[ บันทึก ] [ ยกเลิก ]
+
+````
+
+---
+
+## 🛠️ สแต็กเทคโนโลยี
+
+| ส่วนประกอบ | เทคโนโลยี |
+|------------|-------------|
+| Framework | Laravel 12.x |
+| ภาษา | PHP 8.2+ |
+| Frontend | React + Vite + TailwindCSS |
+| Database | MySQL / SQLite |
+| Auth | Laravel Breeze (JWT / Session) |
+| File Storage | Local (Public symbolic link) |
+
+---
+
+## 📋 ความต้องการระบบ
+- PHP ≥ 8.2
+- Composer
+- Node.js & NPM
+- MySQL หรือ SQLite
+
+---
+
+## 🚀 การติดตั้ง
+
+### 1️⃣ Clone Repository
+```bash
+git clone <repository-url>
+cd personal-task-manager
+````
+
+### 2️⃣ ติดตั้ง Dependencies
+
+```bash
+composer install
+npm install
+```
+
+### 3️⃣ ตั้งค่า Environment
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+### 4️⃣ ตั้งค่าฐานข้อมูล
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+### 5️⃣ ตั้งค่า Storage
+
+```bash
+php artisan storage:link
+```
+
+### 6️⃣ สร้าง Frontend
+
+```bash
+npm run dev   # สำหรับพัฒนา
+npm run build # สำหรับ production
+```
+
+### 7️⃣ รัน Server
+
+```bash
+php artisan serve
+```
+
+เปิด 👉 [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 📁 โครงสร้างโปรเจกต์
+
+```
+personal-task-manager/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/      # Controller ทั้ง Web และ API
+│   │   ├── Middleware/
+│   │   └── Requests/
+│   ├── Models/
+│   └── Helpers/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── factories/
+├── resources/
+│   ├── js/                   # React Components
+│   │   ├── Pages/
+│   │   ├── Components/
+│   │   └── Layouts/
+│   ├── css/
+│   └── views/                # Blade templates (สำหรับ auth/pages)
+├── routes/
+│   ├── web.php
+│   └── api.php
+├── storage/
+│   └── app/public/
+└── public/
+```
+
+---
+
+## 🔐 การอนุญาตและความปลอดภัย
+
+-   ระบบสำหรับผู้ใช้คนเดียว → ไม่ต้องใช้ Role
+-   ป้องกัน CSRF
+-   การเข้ารหัสรหัสผ่าน
+-   ป้องกัน SQL Injection
+-   ป้องกัน XSS
+-   ตรวจสอบไฟล์ที่อัปโหลด
+-   บันทึกกิจกรรมสำคัญ
+
+---
+
+## 🧪 การทดสอบ
+
+```bash
+php artisan test
+php artisan test --coverage
+```
+
+---
+
+## 🔧 การตั้งค่า
+
+```env
+APP_NAME="Personal Task Manager"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=sqlite
+## DB_HOST=127.0.0.1
+## DB_DATABASE=task_manager
+## DB_USERNAME=root
+## DB_PASSWORD=
+
+FILESYSTEM_DISK=public
+```
+
+---
+
+## 📈 การปรับแต่งประสิทธิภาพ
+
+```bash
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+composer install --optimize-autoloader --no-dev
+npm run build
+```
+
+---
+
+## 🌐 การรองรับหลายภาษา
+
+รองรับ **ภาษาไทย** และ **อังกฤษ**
+
+-   UI เปลี่ยนภาษาได้
+-   ไฟล์แปล JSON ที่ `resources/lang/{locale}.json`
+
+---
+
+## 🤝 การมีส่วนร่วม
+
+```bash
+git checkout -b feature/amazing-feature
+git commit -m "เพิ่มฟีเจอร์เจ๋งๆ"
+git push origin feature/amazing-feature
+```
+
+จากนั้นเปิด **Pull Request** 🎉
+
+---
+
+## 🐛 รายงานบั๊ก
+
+-   อธิบายปัญหาให้ชัดเจน
+-   ระบุขั้นตอนทำซ้ำ
+-   สิ่งที่คาดหวัง vs สิ่งที่เกิดขึ้นจริง
+-   แนบภาพหน้าจอหรือ log
+
+---
+
+## 📄 ใบอนุญาต
+
+เผยแพร่ภายใต้ **MIT License**
+
+---
+
+## 👨‍💻 ผู้พัฒนา
+
+พัฒนาเป็น **ระบบจัดการงานส่วนตัว** เพื่อเพิ่มประสิทธิภาพการทำงานของผู้ใช้
+
+---
+
+## 🙏 ขอบคุณ
+
+-   Laravel Framework
+-   React.js
+-   TailwindCSS
+-   Laravel Breeze
+-   Vite
+-   ผู้ร่วมพัฒนาและผู้ทดสอบทุกคน
+
+---
+
+## 📞 การสนับสนุน
+
+สำหรับคำถามหรือขอฟีเจอร์:
+
+-   เปิด issue บน GitHub
+-   ดูเอกสารที่จัดเตรียมให้
